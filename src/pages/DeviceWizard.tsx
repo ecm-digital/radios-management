@@ -28,12 +28,14 @@ import { AntSelect } from "@/components/ui/ant-select"
 import { AntSwitch } from "@/components/ui/ant-switch"
 import { AntRadio } from "@/components/ui/ant-radio"
 
-const steps = [
+type WizardStepStatus = "completed" | "current" | "pending";
+
+const steps: { id: number; title: string; status: WizardStepStatus }[] = [
   { id: 1, title: "Device Selection", status: "completed" },
   { id: 2, title: "Basic Setup", status: "completed" },
   { id: 3, title: "Radio Provisioning", status: "current" },
   { id: 4, title: "Confirmation", status: "pending" }
-]
+];
 
 const devices = [
   {
@@ -69,7 +71,7 @@ export default function DeviceWizard() {
       setCurrentStep(step);
       
       // Aktualizacja statusów kroków
-      const updatedSteps = steps.map(s => ({
+      const updatedSteps: { id: number; title: string; status: WizardStepStatus }[] = steps.map(s => ({
         ...s,
         status: s.id < step ? "completed" : s.id === step ? "current" : "pending"
       }));
@@ -305,26 +307,30 @@ export default function DeviceWizard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                <div className="grid grid-cols-5 gap-2 text-xs font-medium text-muted-foreground uppercase tracking-wider pb-2 border-b">
+                {/* Table Header */}
+                <div className="grid grid-cols-6 gap-4 text-xs font-medium text-muted-foreground uppercase tracking-wider pb-2 border-b">
                   <div className="col-span-2">Device Name</div>
-                  <div>Model</div>
-                  <div>MAC Address</div>
-                  <div>IP Address</div>
-                  <div>Status</div>
+                  <div className="col-span-1">Model</div>
+                  <div className="col-span-1">MAC Address</div>
+                  <div className="col-span-1">IP Address</div>
+                  <div className="col-span-1">Status</div>
                 </div>
                 
+                {/* Table Body */}
                 {devices.map((device, index) => (
-                  <div key={index} className="grid grid-cols-5 gap-2 items-center py-2 text-sm">
-                    <div className="col-span-2 flex items-center gap-2">
-                      <Radio className="w-4 h-4 text-primary" />
-                      <span className="font-medium">{device.name}</span>
+                  <div key={index} className="grid grid-cols-6 gap-4 items-center py-2 text-sm">
+                    <div className="col-span-2 flex items-center gap-2 min-w-0">
+                      <StatusCheckbox variant="success" />
+                      <span className="font-medium truncate">{device.name}</span>
                     </div>
-                    <div className="text-muted-foreground">{device.model}</div>
-                    <div className="text-muted-foreground font-mono text-xs">{device.mac}</div>
-                    <div className="text-muted-foreground font-mono text-xs">{device.ip}</div>
-                    <AlertBadge variant="success" className="text-xs">
-                      {device.status}
-                    </AlertBadge>
+                    <div className="col-span-1 text-muted-foreground min-w-0 truncate">{device.model}</div>
+                    <div className="col-span-1 text-muted-foreground font-mono text-xs min-w-0 break-words">{device.mac}</div>
+                    <div className="col-span-1 text-muted-foreground font-mono text-xs min-w-0 break-words">{device.ip}</div>
+                    <div className="col-span-1">
+                      <AlertBadge variant="success" className="text-xs">
+                        {device.status}
+                      </AlertBadge>
+                    </div>
                   </div>
                 ))}
               </div>
