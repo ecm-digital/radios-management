@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Helmet } from 'react-helmet-async';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -6,6 +7,11 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
 import { Badge } from "@/components/ui/badge"
+import { AlertBadge } from "@/components/ui/alert-badge"
+import { StatusCheckbox } from "@/components/ui/status-checkbox"
+import "../styles/alert-colors.css"
+import "../styles/wizard-steps.css"
+import "../styles/ant-forms.css"
 import { Progress } from "@/components/ui/progress"
 import { 
   ChevronLeft, 
@@ -13,8 +19,14 @@ import {
   Copy,
   Download,
   Plus,
-  Radio
+  Radio,
+  Check
 } from "lucide-react"
+import { WizardSteps } from "@/components/ui/wizard-steps"
+import { AntInput } from "@/components/ui/ant-input"
+import { AntSelect } from "@/components/ui/ant-select"
+import { AntSwitch } from "@/components/ui/ant-switch"
+import { AntRadio } from "@/components/ui/ant-radio"
 
 const steps = [
   { id: 1, title: "Device Selection", status: "completed" },
@@ -51,50 +63,40 @@ export default function DeviceWizard() {
   const [currentStep, setCurrentStep] = useState(3)
   const [ssidEnabled, setSsidEnabled] = useState(true)
 
-  const getStepStatus = (stepId: number) => {
-    if (stepId < currentStep) return "completed"
-    if (stepId === currentStep) return "current"
-    return "pending"
+  // Funkcja do nawigacji między krokami
+  const goToStep = (step: number) => {
+    if (step >= 1 && step <= steps.length) {
+      setCurrentStep(step);
+      
+      // Aktualizacja statusów kroków
+      const updatedSteps = steps.map(s => ({
+        ...s,
+        status: s.id < step ? "completed" : s.id === step ? "current" : "pending"
+      }));
+      setStepsList(updatedSteps);
+    }
   }
+  
+  // Stan dla kroków
+  const [stepsList, setStepsList] = useState(steps);
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="border-b pb-4">
-        <h1 className="text-2xl font-bold text-foreground">Device Wizard</h1>
-        <p className="text-muted-foreground">Configure radio parameters for your selected devices</p>
-      </div>
+    <>
+      <Helmet>
+        <title>Device Wizard - Radiance Network Management</title>
+      </Helmet>
+      <div className="space-y-6">
+        {/* Header */}
+        <div className="border-b pb-4">
+          <h1 className="text-2xl font-bold text-foreground">Device Wizard</h1>
+          <p className="text-muted-foreground">Configure radio parameters for your selected devices</p>
+        </div>
 
-      {/* Progress Steps */}
-      <div className="flex items-center justify-between">
-        {steps.map((step, index) => (
-          <div key={step.id} className="flex items-center">
-            <div className="flex flex-col items-center">
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all ${
-                getStepStatus(step.id) === "completed" 
-                  ? "bg-primary border-primary text-primary-foreground" 
-                  : getStepStatus(step.id) === "current"
-                  ? "border-primary text-primary bg-primary/10"
-                  : "border-muted text-muted-foreground"
-              }`}>
-                {getStepStatus(step.id) === "completed" ? "✓" : step.id}
-              </div>
-              <div className="mt-2 text-center">
-                <p className={`text-sm font-medium ${
-                  getStepStatus(step.id) === "current" ? "text-primary" : "text-muted-foreground"
-                }`}>
-                  {step.id}. {step.title}
-                </p>
-              </div>
-            </div>
-            {index < steps.length - 1 && (
-              <div className={`w-24 h-0.5 mx-4 ${
-                getStepStatus(step.id) === "completed" ? "bg-primary" : "bg-muted"
-              }`} />
-            )}
-          </div>
-        ))}
-      </div>
+        {/* Progress Steps */}
+        <WizardSteps 
+          steps={stepsList}
+          onStepClick={(stepId) => goToStep(stepId)}
+        />
 
       {/* Main Content */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -104,7 +106,7 @@ export default function DeviceWizard() {
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-xl font-semibold">
-                  Step 3: Radio Provisioning
+                  Step {currentStep}: {stepsList[currentStep - 1].title}
                 </CardTitle>
                 <div className="flex gap-2">
                   <Button variant="outline" size="sm">
@@ -123,21 +125,21 @@ export default function DeviceWizard() {
             </CardHeader>
             
             <CardContent className="space-y-6">
+
               {/* Radio Configuration */}
               <div>
                 <h3 className="text-lg font-semibold mb-4">Radio Configuration</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="frequency">Frequency Band</Label>
-                    <Select defaultValue="2.4ghz">
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="2.4ghz">2.4 GHz</SelectItem>
-                        <SelectItem value="5ghz">5 GHz</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <AntSelect
+                      label="Frequency Band"
+                      id="frequency"
+                      defaultValue="2.4ghz"
+                      options={[
+                        { value: "2.4ghz", label: "2.4 GHz" },
+                        { value: "5ghz", label: "5 GHz" }
+                      ]}
+                    />
                   </div>
 
                   <div className="space-y-2">
@@ -320,9 +322,9 @@ export default function DeviceWizard() {
                     <div className="text-muted-foreground">{device.model}</div>
                     <div className="text-muted-foreground font-mono text-xs">{device.mac}</div>
                     <div className="text-muted-foreground font-mono text-xs">{device.ip}</div>
-                    <Badge variant="outline" className="text-success border-success/20 bg-success/10 text-xs">
+                    <AlertBadge variant="success" className="text-xs">
                       {device.status}
-                    </Badge>
+                    </AlertBadge>
                   </div>
                 ))}
               </div>
@@ -333,21 +335,29 @@ export default function DeviceWizard() {
 
       {/* Navigation */}
       <div className="flex justify-between pt-6 border-t">
-        <Button variant="outline">
+        <Button 
+          variant="outline"
+          onClick={() => goToStep(currentStep - 1)}
+          disabled={currentStep === 1}
+        >
           <ChevronLeft className="w-4 h-4 mr-2" />
-          Previous: Basic Setup
+          Previous: {currentStep > 1 ? stepsList[currentStep - 2].title : ''}
         </Button>
         
         <div className="flex gap-3">
           <Button variant="secondary">
             Save as Draft
           </Button>
-          <Button>
-            Next: Confirmation
+          <Button 
+            onClick={() => goToStep(currentStep + 1)}
+            disabled={currentStep === stepsList.length}
+          >
+            {currentStep < stepsList.length ? 'Next: ' + stepsList[currentStep].title : 'Complete'}
             <ChevronRight className="w-4 h-4 ml-2" />
           </Button>
         </div>
       </div>
     </div>
+    </>
   )
 }

@@ -1,0 +1,89 @@
+/* Nowa paleta kolorów dla alertów i statusów */
+:root {
+  /* Success - Zielony */
+  --success: 142 76% 36%;
+  --success-light: 142 76% 90%;
+  --success-border: 142 76% 45%;
+  
+  /* Warning - Pomarańczowy */
+  --warning: 35 100% 50%;
+  --warning-light: 35 100% 95%;
+  --warning-border: 35 100% 60%;
+  
+  /* Info - Niebieski */
+  --info: 210 100% 50%;
+  --info-light: 210 100% 95%;
+  --info-border: 210 100% 60%;
+  
+  /* Error - Czerwony */
+  --destructive: 0 84% 60%;
+  --destructive-light: 0 84% 95%;
+  --destructive-border: 0 84% 70%;
+  
+  /* Neutral - Szary */
+  --neutral: 220 14% 60%;
+  --neutral-light: 220 14% 95%;
+  --neutral-border: 220 14% 70%;
+}
+
+/* Klasy dla alertów */
+.alert-success {
+  background-color: hsl(var(--success-light));
+  border-color: hsl(var(--success-border));
+  color: hsl(var(--success));
+}
+
+.alert-warning {
+  background-color: hsl(var(--warning-light));
+  border-color: hsl(var(--warning-border));
+  color: hsl(var(--warning));
+}
+
+.alert-info {
+  background-color: hsl(var(--info-light));
+  border-color: hsl(var(--info-border));
+  color: hsl(var(--info));
+}
+
+.alert-error {
+  background-color: hsl(var(--destructive-light));
+  border-color: hsl(var(--destructive-border));
+  color: hsl(var(--destructive));
+}
+
+.alert-neutral {
+  background-color: hsl(var(--neutral-light));
+  border-color: hsl(var(--neutral-border));
+  color: hsl(var(--neutral));
+}
+
+/* Klasy dla badge */
+.badge-success {
+  background-color: hsl(var(--success-light));
+  border: 1px solid hsl(var(--success-border));
+  color: hsl(var(--success));
+}
+
+.badge-warning {
+  background-color: hsl(var(--warning-light));
+  border: 1px solid hsl(var(--warning-border));
+  color: hsl(var(--warning));
+}
+
+.badge-info {
+  background-color: hsl(var(--info-light));
+  border: 1px solid hsl(var(--info-border));
+  color: hsl(var(--info));
+}
+
+.badge-error {
+  background-color: hsl(var(--destructive-light));
+  border: 1px solid hsl(var(--destructive-border));
+  color: hsl(var(--destructive));
+}
+
+.badge-neutral {
+  background-color: hsl(var(--neutral-light));
+  border: 1px solid hsl(var(--neutral-border));
+  color: hsl(var(--neutral));
+}

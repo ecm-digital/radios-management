@@ -1,8 +1,18 @@
-# Welcome to your Lovable project
+# Radiance Network Management System
 
-## Project info
+## Project Overview
 
-**URL**: https://lovable.dev/projects/5743e109-55a3-451a-bc45-e921e2174ff2
+Radiance Network Management System is a comprehensive solution for monitoring, configuring, and managing radio network devices. The system provides administrators with tools to efficiently manage wireless infrastructure, monitor device status, configure radio parameters, and analyze network performance.
+
+## Features
+
+- **Dashboard**: Real-time monitoring of network devices and performance metrics
+- **Device Configuration**: Wizard-based configuration of multiple devices simultaneously
+- **Network Map**: Visual representation of network topology and device status
+- **Analytics**: Performance analysis and reporting tools
+- **Alerts Management**: Real-time alerts and notification system
+- **User Management**: Role-based access control and user administration
+- **System Settings**: Global configuration and backup management
 
 ## How can I edit this code?
 

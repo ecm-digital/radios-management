@@ -2,58 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './styles/typography.css';
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    --background: 248 250 252;
-    --foreground: 213 18% 15%;
+    /* Ant Design color palette */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
 
-    --card: 255 255 255;
-    --card-foreground: 213 18% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
 
-    --popover: 255 255 255;
-    --popover-foreground: 213 18% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
 
-    --primary: 200 89% 47%;
-    --primary-foreground: 255 255 255;
-    --primary-glow: 200 89% 65%;
+    /* Ant Design primary blue */
+    --primary: 209 100% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 209 100% 65%;
 
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 213 18% 15%;
+    /* Ant Design neutral colors */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 0 0% 0%;
 
-    --muted: 240 5% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 200 89% 47%;
-    --accent-foreground: 255 255 255;
+    --accent: 209 100% 55%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 255 255 255;
+    /* Ant Design status colors */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-light: 0 72% 95%;
+    --destructive-border: 0 72% 60%;
 
-    --warning: 38 92% 50%;
-    --warning-foreground: 255 255 255;
+    --warning: 36 100% 50%;
+    --warning-foreground: 0 0% 0%;
+    --warning-light: 36 100% 95%;
+    --warning-border: 36 100% 60%;
 
-    --success: 142 76% 36%;
-    --success-foreground: 255 255 255;
+    --success: 135 56% 38%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 135 56% 95%;
+    --success-border: 135 56% 45%;
 
-    --info: 217 91% 60%;
-    --info-foreground: 255 255 255;
+    --info: 209 100% 55%;
+    --info-foreground: 0 0% 100%;
+    --info-light: 209 100% 95%;
+    --info-border: 209 100% 60%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 200 89% 47%;
+    /* Ant Design border and input colors */
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 209 100% 55%;
 
-    --gradient-primary: linear-gradient(135deg, hsl(200 89% 47%), hsl(200 89% 65%));
-    --gradient-secondary: linear-gradient(135deg, hsl(240 5% 96%), hsl(248 250 252));
-    --shadow-elegant: 0 4px 20px -4px hsl(200 89% 47% / 0.25);
-    --shadow-soft: 0 1px 3px 0 hsl(0 0% 0% / 0.1);
+    /* Ant Design gradients and shadows */
+    --gradient-primary: linear-gradient(135deg, hsl(209 100% 55%), hsl(209 100% 65%));
+    --gradient-secondary: linear-gradient(135deg, hsl(220 14% 96%), hsl(220 14% 98%));
+    --shadow-1: 0 2px 8px rgba(0, 0, 0, 0.15);
+    --shadow-2: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-3: 0 6px 16px rgba(0, 0, 0, 0.15);
 
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-    --radius: 0.5rem;
+    /* Ant Design transitions */
+    --transition-base: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    
+    /* Ant Design border radius */
+    --radius: 2px;
 
     --sidebar-background: 0 0% 98%;
 
@@ -118,5 +137,28 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background-color: white !important;
   }
+
+  .bg-background {
+    background-color: white !important;
+  }
+}/*
+ Force white background on all cards and containers */
+.card, 
+.bg-card, 
+main, 
+header, 
+.min-h-screen, 
+.space-y-6, 
+.grid, 
+.flex, 
+.flex-1, 
+.flex-col {
+  background-color: white !important;
+}/* 
+Enhanced borders for stats cards */
+.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-4.gap-6 .rounded-lg {
+  border: 1px solid #ccc !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
 }

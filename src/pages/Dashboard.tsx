@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { StatsCard } from "@/components/StatsCard"
 import { ActivityFeed } from "@/components/ActivityFeed"
 import { 
@@ -9,12 +10,16 @@ import {
 
 export default function Dashboard() {
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="border-b pb-4">
-        <h1 className="text-2xl font-bold text-foreground">System Dashboard</h1>
-        <p className="text-muted-foreground">Monitor your radio network devices and performance</p>
-      </div>
+    <>
+      <Helmet>
+        <title>Dashboard - Radiance Network Management</title>
+      </Helmet>
+      <div className="space-y-6">
+        {/* Header */}
+        <div className="border-b pb-4">
+          <h1 className="text-2xl font-bold text-foreground">System Dashboard</h1>
+          <p className="text-muted-foreground">Monitor your radio network devices and performance</p>
+        </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -44,7 +49,7 @@ export default function Dashboard() {
           change="from last 24 hours"
           changeType="neutral"
           icon={AlertTriangle}
-          iconColor="text-warning"
+          iconColor="text-info"
         />
         
         <StatsCard
@@ -60,5 +65,6 @@ export default function Dashboard() {
       {/* Activity Feed */}
       <ActivityFeed />
     </div>
+    </>
   )
 }

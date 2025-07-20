@@ -1,0 +1,157 @@
+/* Ant Design Steps styling */
+.steps-container {
+  display: flex;
+  width: 100%;
+  margin: 24px 0;
+  position: relative;
+}
+
+.step-item {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.step-icon-container {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.step-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.step-content {
+  text-align: center;
+}
+
+.step-title {
+  font-size: 14px;
+  line-height: 1.5;
+  transition: all 0.3s;
+  margin-bottom: 4px;
+}
+
+.step-description {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.45);
+  max-width: 140px;
+  margin: 0 auto;
+}
+
+.step-line {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  right: -50%;
+  height: 1px;
+  z-index: 1;
+  transition: all 0.3s;
+}
+
+/* Status styles */
+.step-completed .step-icon {
+  background-color: #1890ff;
+  border: 1px solid #1890ff;
+  color: #fff;
+}
+
+.step-completed .step-line {
+  background-color: #1890ff;
+}
+
+.step-current .step-icon {
+  background-color: #e6f7ff;
+  border: 1px solid #1890ff;
+  color: #1890ff;
+}
+
+.step-current .step-title {
+  color: #1890ff;
+  font-weight: 500;
+}
+
+.step-pending .step-icon {
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.step-pending .step-line {
+  background-color: #f0f0f0;
+}
+
+.step-pending .step-title {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.step-error .step-icon {
+  background-color: #fff2f0;
+  border: 1px solid #ff4d4f;
+  color: #ff4d4f;
+}
+
+.step-error .step-title {
+  color: #ff4d4f;
+}
+
+/* Size variants */
+.step-small .step-icon {
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+}
+
+.step-small .step-line {
+  top: 12px;
+}
+
+.step-small .step-title {
+  font-size: 12px;
+}
+
+/* Vertical steps */
+.step-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 48px;
+}
+
+.step-vertical .step-icon-container {
+  margin-right: 8px;
+  margin-bottom: 0;
+}
+
+.step-vertical .step-content {
+  text-align: left;
+  margin-left: 12px;
+}
+
+.step-vertical .step-line {
+  position: absolute;
+  top: 0;
+  left: 16px;
+  right: auto;
+  width: 1px;
+  height: 100%;
+}
+
+/* Last step doesn't have a line */
+.step-item:last-child .step-line {
+  display: none;
+}
