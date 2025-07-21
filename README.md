@@ -1,83 +1,179 @@
-# Radiance Network Management System
+# Radiance Network Management - UX/UI Prototype
 
-## Project Overview
+![Radiance Network Management](https://img.shields.io/badge/Status-UX%2FUI%20Prototype-blue)
+![React](https://img.shields.io/badge/React-18.3.1-61DAFB?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.5.3-3178C6?logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.11-06B6D4?logo=tailwindcss)
+![Ant Design](https://img.shields.io/badge/Design%20System-Ant%20Design-0170FE?logo=antdesign)
 
-Radiance Network Management System is a comprehensive solution for monitoring, configuring, and managing radio network devices. The system provides administrators with tools to efficiently manage wireless infrastructure, monitor device status, configure radio parameters, and analyze network performance.
+## 🎯 Cel Projektu
 
-## Features
+Ten projekt to **prototyp UX/UI** stworzony w celu demonstracji umiejętności projektowania i implementacji nowoczesnych interfejsów użytkownika. Symuluje system zarządzania siecią radiową, prezentując:
 
-- **Dashboard**: Real-time monitoring of network devices and performance metrics
-- **Device Configuration**: Wizard-based configuration of multiple devices simultaneously
-- **Network Map**: Visual representation of network topology and device status
-- **Analytics**: Performance analysis and reporting tools
-- **Alerts Management**: Real-time alerts and notification system
-- **User Management**: Role-based access control and user administration
-- **System Settings**: Global configuration and backup management
+- ✨ **Nowoczesny design** zgodny z wytycznymi Ant Design
+- 🎨 **Spójny system projektowy** z przemyślaną paletą kolorów
+- 📱 **Responsywny interfejs** dostosowany do różnych urządzeń
+- 🔄 **Interaktywne komponenty** z płynnymi animacjami
+- 🧩 **Modularna architektura** komponentów React
+- 🎪 **Przykładowe user flows** i wzorce projektowe
 
-## How can I edit this code?
+## 🚀 Demo
 
-There are several ways of editing your application.
+🔗 **[Zobacz działający prototyp](https://github.com/ecm-digital/radios-management)**
 
-**Use Lovable**
+## 🛠️ Stack Technologiczny
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/5743e109-55a3-451a-bc45-e921e2174ff2) and start prompting.
+### Frontend
+- **React 18.3.1** - Biblioteka do budowy interfejsu użytkownika
+- **TypeScript 5.5.3** - Typowany JavaScript dla lepszej jakości kodu
+- **Vite** - Szybkie narzędzie do budowy aplikacji
+- **Tailwind CSS 3.4.11** - Utility-first CSS framework
+- **shadcn/ui** - Komponenty UI oparte na Radix UI
 
-Changes made via Lovable will be committed automatically to this repo.
+### Design System
+- **Ant Design** - Wytyczne projektowe i paleta kolorów
+- **Lucide React** - Spójny zestaw ikon
+- **Responsive Design** - Mobile-first approach
 
-**Use your preferred IDE**
+### Narzędzia Deweloperskie
+- **ESLint** - Linting kodu JavaScript/TypeScript
+- **React Router** - Routing w aplikacji SPA
+- **React Query** - Zarządzanie stanem serwera
+- **React Helmet** - Zarządzanie meta tagami
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 📁 Struktura Projektu
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+src/
+├── components/          # Komponenty UI
+│   ├── ui/             # Podstawowe komponenty (Button, Card, Input...)
+│   ├── AppSidebar.tsx  # Nawigacja boczna
+│   ├── StatsCard.tsx   # Karty statystyk
+│   └── ActivityFeed.tsx # Feed aktywności
+├── pages/              # Strony aplikacji
+│   ├── Dashboard.tsx   # Pulpit główny
+│   ├── DeviceWizard.tsx # Kreator konfiguracji
+│   ├── NetworkMap.tsx  # Mapa sieci
+│   └── ...
+├── styles/             # Style CSS
+│   ├── ant-forms.css   # Style formularzy Ant Design
+│   ├── typography.css  # Typografia
+│   └── wizard-steps.css # Style kreatora
+└── hooks/              # Custom React hooks
 ```
 
-**Edit a file directly in GitHub**
+## 🎨 Funkcje UX/UI
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### 📊 Dashboard
+- Karty statystyk z animacjami hover
+- Feed aktywności z różnymi typami zdarzeń
+- Responsywny grid layout
+- Spójne kolory statusów
 
-**Use GitHub Codespaces**
+### 🔧 Device Wizard
+- Wieloetapowy kreator konfiguracji
+- Wizualny wskaźnik postępu (Steps)
+- Formularze zgodne z Ant Design
+- Walidacja i feedback użytkownika
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### 🧭 Nawigacja
+- Sidebar z grupowaniem logicznym
+- Aktywne stany nawigacji
+- Tooltips dla zwinięty stan
+- Smooth transitions
 
-## What technologies are used for this project?
+### 🎯 Komponenty UI
+- Spójny system kolorów
+- Różne stany komponentów (hover, active, disabled)
+- Mikrointerakcje i animacje
+- Accessibility compliance
 
-This project is built with:
+## 🚀 Uruchomienie Projektu
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Wymagania
+- Node.js 18+ 
+- npm lub yarn
 
-## How can I deploy this project?
+### Instalacja
 
-Simply open [Lovable](https://lovable.dev/projects/5743e109-55a3-451a-bc45-e921e2174ff2) and click on Share -> Publish.
+```bash
+# Klonowanie repozytorium
+git clone https://github.com/ecm-digital/radios-management.git
+cd radios-management
 
-## Can I connect a custom domain to my Lovable project?
+# Instalacja zależności
+npm install
 
-Yes, you can!
+# Uruchomienie w trybie deweloperskim
+npm run dev
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+# Budowanie do produkcji
+npm run build
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Aplikacja będzie dostępna pod adresem `http://localhost:8080`
+
+## 🎨 Design System
+
+### Paleta Kolorów
+- **Primary**: `#1890ff` (Ant Design Blue)
+- **Success**: `#52c41a` (Green)
+- **Warning**: `#faad14` (Orange) 
+- **Error**: `#f5222d` (Red)
+- **Info**: `#1890ff` (Blue)
+
+### Typografia
+- **Font Family**: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto
+- **Font Sizes**: 12px, 14px, 16px, 20px, 24px, 30px, 38px
+- **Line Heights**: 1.23 - 1.5715
+
+### Komponenty
+- **Border Radius**: 2px (Ant Design standard)
+- **Shadows**: Subtelne cienie zgodne z Material Design
+- **Transitions**: 0.3s cubic-bezier dla płynnych animacji
+
+## 📱 Responsywność
+
+Projekt wykorzystuje mobile-first approach z breakpointami:
+- **Mobile**: < 768px
+- **Tablet**: 768px - 1024px  
+- **Desktop**: > 1024px
+
+## ♿ Accessibility
+
+- Semantyczny HTML
+- ARIA labels i role
+- Keyboard navigation
+- Color contrast compliance
+- Screen reader support
+
+## 🔄 Przykładowe User Flows
+
+1. **Dashboard Overview** - Przegląd stanu sieci
+2. **Device Configuration** - Konfiguracja urządzeń przez kreator
+3. **Network Monitoring** - Monitorowanie aktywności sieci
+4. **Alert Management** - Zarządzanie alertami i powiadomieniami
+
+## 📈 Metryki Wydajności
+
+- **First Contentful Paint**: < 1.5s
+- **Largest Contentful Paint**: < 2.5s
+- **Cumulative Layout Shift**: < 0.1
+- **Time to Interactive**: < 3.5s
+
+## 🤝 Kontakt
+
+Ten projekt został stworzony jako demonstracja umiejętności UX/UI design i frontend development.
+
+**Autor**: Tomasz Gajda  
+**Email**: [kontakt@example.com]  
+**Portfolio**: [portfolio-link]  
+**LinkedIn**: [linkedin-profile]
+
+## 📄 Licencja
+
+Ten projekt jest dostępny na licencji MIT. Zobacz plik `LICENSE` dla szczegółów.
+
+---
+
+*Projekt stworzony z ❤️ jako showcase umiejętności UX/UI design i React development*

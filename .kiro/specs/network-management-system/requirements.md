@@ -1,88 +1,105 @@
-# Requirements Document
+# Requirements Document - UX/UI Prototype
 
 ## Introduction
 
-System Zarządzania Siecią Radiance (Radiance Network Management System) to kompleksowe rozwiązanie do monitorowania, konfiguracji i zarządzania urządzeniami radiowymi w sieci. System umożliwia administratorom sieci efektywne zarządzanie infrastrukturą bezprzewodową, monitorowanie stanu urządzeń, konfigurację parametrów radiowych oraz analizę wydajności sieci. Głównym celem systemu jest zapewnienie stabilnej i wydajnej pracy sieci bezprzewodowej poprzez intuicyjny interfejs użytkownika i zaawansowane funkcje zarządzania.
+Radiance Network Management System to prototyp UX/UI dla systemu zarządzania siecią radiową, stworzony w celu prezentacji koncepcji interfejsu użytkownika i doświadczenia użytkownika (UX/UI). Prototyp ma na celu zademonstrowanie:
+
+- **Nowoczesnego designu** zgodnego z wytycznymi Ant Design
+- **Intuicyjnej nawigacji** i struktury informacji
+- **Responsywnego interfejsu** dostosowanego do różnych urządzeń
+- **Spójnego systemu kolorów i typografii**
+- **Interaktywnych komponentów** i wzorców projektowych
+- **Przykładowych przepływów użytkownika** (user flows)
+
+Prototyp służy jako:
+1. **Prezentacja umiejętności** w zakresie projektowania interfejsów użytkownika
+2. **Demonstracja techniczna** nowoczesnych technologii frontend (React, TypeScript, Tailwind CSS)
+3. **Wzorzec projektowy** dla przyszłych projektów
+4. **Narzędzie komunikacji** z klientami i zespołem projektowym
 
 ## Requirements
 
-### Requirement 1: Monitorowanie urządzeń sieciowych
+### Requirement 1: Dashboard i wizualizacja danych (UX Prototype)
 
-**User Story:** Jako administrator sieci, chcę mieć możliwość monitorowania stanu wszystkich urządzeń sieciowych w czasie rzeczywistym, aby szybko reagować na problemy i zapewnić ciągłość działania sieci.
-
-#### Acceptance Criteria
-
-1. WHEN użytkownik przegląda pulpit (dashboard) THEN system SHALL wyświetlać liczbę aktywnych urządzeń, urządzeń offline oraz urządzeń w stanie ostrzeżenia.
-2. WHEN użytkownik przegląda pulpit THEN system SHALL wyświetlać procentowy czas działania sieci (uptime).
-3. WHEN urządzenie zmienia swój stan THEN system SHALL aktualizować dane na pulpicie w czasie rzeczywistym.
-4. WHEN użytkownik przegląda feed aktywności THEN system SHALL wyświetlać chronologiczną listę zdarzeń sieciowych z informacją o typie zdarzenia, urządzeniu, czasie i statusie.
-5. WHEN zdarzenie sieciowe zostanie wykryte THEN system SHALL dodać je do feedu aktywności.
-
-### Requirement 2: Konfiguracja urządzeń radiowych
-
-**User Story:** Jako technik sieci, chcę mieć możliwość konfiguracji parametrów radiowych dla wielu urządzeń jednocześnie, aby efektywnie zarządzać siecią bezprzewodową.
+**User Story:** Jako potencjalny klient/użytkownik, chcę zobaczyć intuicyjny dashboard z przejrzystą wizualizacją danych, aby ocenić jakość projektowania interfejsu użytkownika.
 
 #### Acceptance Criteria
 
-1. WHEN użytkownik wybiera urządzenia do konfiguracji THEN system SHALL umożliwić wybór wielu urządzeń jednocześnie.
-2. WHEN użytkownik konfiguruje parametry radiowe THEN system SHALL umożliwić wybór pasma częstotliwości, kanału, szerokości kanału, mocy nadawania, trybu pracy i protokołu radiowego.
-3. WHEN użytkownik konfiguruje SSID THEN system SHALL umożliwić włączenie/wyłączenie SSID, ustawienie nazwy SSID, wybór opcji rozgłaszania SSID, wybór zabezpieczeń i ustawienie hasła.
-4. WHEN użytkownik konfiguruje urządzenia THEN system SHALL umożliwić dodanie wielu SSID do jednego urządzenia.
-5. WHEN użytkownik zapisuje konfigurację THEN system SHALL zastosować ustawienia do wszystkich wybranych urządzeń.
-6. WHEN użytkownik chce zapisać konfigurację jako szablon THEN system SHALL umożliwić zapisanie i późniejsze wykorzystanie szablonu.
+1. WHEN użytkownik odwiedza stronę główną THEN prototyp SHALL wyświetlać nowoczesny dashboard z kartami statystyk (StatsCard) w stylu Ant Design.
+2. WHEN użytkownik przegląda dashboard THEN prototyp SHALL prezentować spójny system kolorów i typografii.
+3. WHEN użytkownik interaguje z komponentami THEN prototyp SHALL demonstrować płynne animacje i przejścia.
+4. WHEN użytkownik przegląda feed aktywności THEN prototyp SHALL wyświetlać przykładowe dane w komponencie ActivityFeed z różnymi statusami i ikonami.
+5. WHEN użytkownik nawiguje po interfejsie THEN prototyp SHALL demonstrować responsywny design dostosowany do różnych rozmiarów ekranu.
 
-### Requirement 3: Wizualizacja sieci
+### Requirement 2: Kreator konfiguracji (UX Flow Prototype)
 
-**User Story:** Jako administrator sieci, chcę mieć dostęp do mapy sieci, aby wizualnie monitorować rozmieszczenie i stan urządzeń w infrastrukturze.
-
-#### Acceptance Criteria
-
-1. WHEN użytkownik przegląda mapę sieci THEN system SHALL wyświetlać graficzną reprezentację wszystkich urządzeń sieciowych.
-2. WHEN użytkownik przegląda mapę sieci THEN system SHALL oznaczać urządzenia kolorami odpowiadającymi ich statusowi (aktywne, offline, ostrzeżenie).
-3. WHEN użytkownik klika na urządzenie na mapie THEN system SHALL wyświetlać szczegółowe informacje o urządzeniu.
-4. WHEN użytkownik przegląda mapę sieci THEN system SHALL wyświetlać połączenia między urządzeniami.
-
-### Requirement 4: Analityka i raportowanie
-
-**User Story:** Jako menedżer IT, chcę mieć dostęp do analityki i raportów dotyczących wydajności sieci, aby optymalizować jej działanie i planować rozwój infrastruktury.
+**User Story:** Jako potencjalny klient, chcę zobaczyć przykład wieloetapowego kreatora konfiguracji, aby ocenić umiejętności projektowania złożonych przepływów użytkownika.
 
 #### Acceptance Criteria
 
-1. WHEN użytkownik przegląda sekcję analityki THEN system SHALL wyświetlać wykresy i statystyki dotyczące wydajności sieci.
-2. WHEN użytkownik wybiera zakres czasowy THEN system SHALL filtrować dane analityczne zgodnie z wybranym zakresem.
-3. WHEN użytkownik generuje raport THEN system SHALL umożliwić eksport danych w formatach PDF, CSV lub Excel.
-4. WHEN użytkownik przegląda analitykę THEN system SHALL wyświetlać trendy w wykorzystaniu sieci i wydajności urządzeń.
+1. WHEN użytkownik otwiera Device Wizard THEN prototyp SHALL wyświetlać wieloetapowy kreator z wyraźnymi krokami w stylu Ant Design Steps.
+2. WHEN użytkownik przechodzi przez kroki THEN prototyp SHALL demonstrować płynną nawigację z wizualnym wskaźnikiem postępu.
+3. WHEN użytkownik wypełnia formularz THEN prototyp SHALL prezentować komponenty formularzy zgodne z Ant Design (input, select, switch, radio).
+4. WHEN użytkownik interaguje z przełącznikami THEN prototyp SHALL demonstrować responsywne komponenty z odpowiednimi stanami wizualnymi.
+5. WHEN użytkownik klika przyciski nawigacji THEN prototyp SHALL pokazywać logiczną strukturę przepływu użytkownika.
+6. WHEN użytkownik przegląda podsumowanie THEN prototyp SHALL wyświetlać przejrzyste podsumowanie wybranych opcji.
 
-### Requirement 5: Zarządzanie alertami
+### Requirement 3: Nawigacja i architektura informacji (UX Prototype)
 
-**User Story:** Jako administrator sieci, chcę otrzymywać powiadomienia o problemach w sieci, aby szybko reagować na incydenty i minimalizować przestoje.
-
-#### Acceptance Criteria
-
-1. WHEN wystąpi problem z urządzeniem THEN system SHALL generować alert z odpowiednim poziomem priorytetu.
-2. WHEN użytkownik przegląda sekcję alertów THEN system SHALL wyświetlać listę aktywnych alertów posortowanych według priorytetu.
-3. WHEN użytkownik potwierdza alert THEN system SHALL oznaczać alert jako potwierdzony i rejestrować użytkownika, który go potwierdził.
-4. WHEN użytkownik rozwiązuje problem THEN system SHALL umożliwić oznaczenie alertu jako rozwiązanego.
-5. WHEN użytkownik konfiguruje powiadomienia THEN system SHALL umożliwić wybór kanałów powiadomień (email, SMS, powiadomienia w aplikacji) dla różnych typów alertów.
-
-### Requirement 6: Zarządzanie użytkownikami i uprawnieniami
-
-**User Story:** Jako administrator systemu, chcę zarządzać kontami użytkowników i ich uprawnieniami, aby zapewnić bezpieczny dostęp do systemu zgodnie z rolami w organizacji.
+**User Story:** Jako potencjalny klient, chcę zobaczyć intuicyjną nawigację i logiczną strukturę informacji, aby ocenić umiejętności projektowania architektury informacji.
 
 #### Acceptance Criteria
 
-1. WHEN administrator tworzy nowe konto użytkownika THEN system SHALL umożliwić przypisanie roli (administrator, technik, obserwator).
-2. WHEN użytkownik loguje się do systemu THEN system SHALL weryfikować jego uprawnienia i udostępniać funkcje zgodnie z przypisaną rolą.
-3. WHEN administrator edytuje uprawnienia użytkownika THEN system SHALL natychmiast aktualizować dostępne funkcje dla tego użytkownika.
-4. WHEN administrator resetuje hasło użytkownika THEN system SHALL generować tymczasowe hasło i wymuszać jego zmianę przy następnym logowaniu.
+1. WHEN użytkownik otwiera aplikację THEN prototyp SHALL wyświetlać sidebar z logicznie pogrupowanymi sekcjami (Management, Settings).
+2. WHEN użytkownik nawiguje między sekcjami THEN prototyp SHALL demonstrować aktywne stany nawigacji z odpowiednimi kolorami i ikonami.
+3. WHEN użytkownik klika na elementy menu THEN prototyp SHALL pokazywać płynne przejścia między stronami.
+4. WHEN użytkownik zwija/rozwija sidebar THEN prototyp SHALL demonstrować responsywne zachowanie z tooltipami dla zwinięty stan.
+5. WHEN użytkownik przegląda różne sekcje THEN prototyp SHALL prezentować spójną strukturę layoutu i hierarchię informacji.
 
-### Requirement 7: Ustawienia systemowe
+### Requirement 4: Komponenty UI i system designu (Design System Prototype)
 
-**User Story:** Jako administrator systemu, chcę mieć możliwość konfiguracji globalnych ustawień systemu, aby dostosować jego działanie do potrzeb organizacji.
+**User Story:** Jako potencjalny klient/zespół projektowy, chcę zobaczyć spójny system komponentów UI, aby ocenić umiejętności tworzenia skalowalnych systemów designu.
 
 #### Acceptance Criteria
 
-1. WHEN administrator przegląda ustawienia systemowe THEN system SHALL wyświetlać opcje konfiguracji dla całego systemu.
-2. WHEN administrator zmienia ustawienia systemowe THEN system SHALL zapisywać zmiany i stosować je globalnie.
-3. WHEN administrator konfiguruje kopie zapasowe THEN system SHALL umożliwić ustawienie harmonogramu automatycznych kopii zapasowych.
-4. WHEN administrator przywraca kopię zapasową THEN system SHALL przywracać stan systemu z wybranej kopii zapasowej.
+1. WHEN użytkownik przegląda różne sekcje THEN prototyp SHALL demonstrować spójne komponenty UI (Button, Card, Input, Select, Badge, Alert).
+2. WHEN użytkownik interaguje z komponentami THEN prototyp SHALL pokazywać różne stany (hover, active, disabled, loading).
+3. WHEN użytkownik przegląda komponenty THEN prototyp SHALL prezentować spójną paletę kolorów zgodną z Ant Design.
+4. WHEN użytkownik testuje responsywność THEN prototyp SHALL demonstrować adaptacyjny design dla różnych rozmiarów ekranu.
+5. WHEN użytkownik przegląda typografię THEN prototyp SHALL pokazywać hierarchię tekstu i spójne style czcionek.
+
+### Requirement 5: Interaktywność i mikrointerakcje (UX Prototype)
+
+**User Story:** Jako potencjalny klient, chcę zobaczyć przemyślane mikrointerakcje i responsywne elementy, aby ocenić dbałość o szczegóły w projektowaniu UX.
+
+#### Acceptance Criteria
+
+1. WHEN użytkownik najeżdża na elementy interaktywne THEN prototyp SHALL pokazywać subtelne efekty hover z płynnymi przejściami.
+2. WHEN użytkownik klika przyciski THEN prototyp SHALL demonstrować odpowiednie stany aktywne i feedback wizualny.
+3. WHEN użytkownik ładuje dane THEN prototyp SHALL pokazywać stany ładowania (loading states) i szkielety (skeletons).
+4. WHEN użytkownik wypełnia formularze THEN prototyp SHALL prezentować walidację w czasie rzeczywistym z odpowiednimi komunikatami.
+5. WHEN użytkownik przegląda alerty THEN prototyp SHALL demonstrować różne typy powiadomień z odpowiednimi kolorami i ikonami.
+
+### Requirement 6: Techniczne wykonanie i jakość kodu (Technical Prototype)
+
+**User Story:** Jako potencjalny pracodawca/klient techniczny, chcę zobaczyć wysoką jakość kodu i nowoczesne technologie, aby ocenić umiejętności techniczne.
+
+#### Acceptance Criteria
+
+1. WHEN deweloper przegląda kod THEN prototyp SHALL demonstrować czytelną strukturę komponentów React z TypeScript.
+2. WHEN deweloper analizuje style THEN prototyp SHALL pokazywać efektywne wykorzystanie Tailwind CSS i CSS-in-JS.
+3. WHEN deweloper testuje wydajność THEN prototyp SHALL demonstrować optymalizacje (lazy loading, memoization, code splitting).
+4. WHEN deweloper przegląda architekturę THEN prototyp SHALL pokazywać modularne komponenty i reużywalne wzorce.
+5. WHEN deweloper sprawdza responsywność THEN prototyp SHALL demonstrować mobile-first approach i breakpoints.
+
+### Requirement 7: Prezentacja i dokumentacja (Portfolio Prototype)
+
+**User Story:** Jako potencjalny klient/pracodawca, chcę mieć dostęp do dokumentacji i prezentacji projektu, aby zrozumieć proces projektowy i umiejętności autora.
+
+#### Acceptance Criteria
+
+1. WHEN użytkownik odwiedza repozytorium GitHub THEN projekt SHALL zawierać szczegółową dokumentację README z opisem technologii i funkcji.
+2. WHEN użytkownik przegląda kod THEN projekt SHALL zawierać komentarze i dokumentację komponentów.
+3. WHEN użytkownik testuje aplikację THEN projekt SHALL być dostępny online z działającym demo.
+4. WHEN użytkownik analizuje projekt THEN prototyp SHALL demonstrować proces projektowy od wymagań przez design do implementacji.
+5. WHEN użytkownik ocenia jakość THEN projekt SHALL pokazywać best practices w zakresie UX/UI design i frontend development.

@@ -1,8 +1,16 @@
-# Design Document: System Zarządzania Siecią Radiance
+# Design Document: Radiance Network Management - UX/UI Prototype
 
 ## Overview
 
-System Zarządzania Siecią Radiance to aplikacja webowa zaprojektowana do kompleksowego zarządzania infrastrukturą sieci bezprzewodowej. System umożliwia monitorowanie stanu urządzeń, konfigurację parametrów radiowych, wizualizację sieci, analizę wydajności oraz zarządzanie alertami i użytkownikami. Aplikacja została zaprojektowana z myślą o intuicyjnym interfejsie użytkownika, skalowalności oraz wydajności, aby sprostać wymaganiom zarówno małych, jak i dużych sieci bezprzewodowych.
+Radiance Network Management to prototyp UX/UI demonstrujący nowoczesne podejście do projektowania interfejsów użytkownika dla aplikacji biznesowych. Projekt został stworzony jako showcase umiejętności w zakresie:
+
+- **UX/UI Design** - projektowanie intuicyjnych i estetycznych interfejsów
+- **Frontend Development** - implementacja w React/TypeScript z najlepszymi praktykami
+- **Design Systems** - tworzenie spójnych i skalowalnych systemów projektowych
+- **Responsive Design** - dostosowanie do różnych urządzeń i rozmiarów ekranu
+- **Accessibility** - projektowanie dostępnych interfejsów zgodnych z WCAG
+
+Prototyp służy jako przykład profesjonalnego podejścia do tworzenia aplikacji webowych dla sektora enterprise.
 
 ## Architektura
 
