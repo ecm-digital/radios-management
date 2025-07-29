@@ -1,4 +1,6 @@
-# Plan Implementacji
+# Plan Implementacji - UX/UI Prototype
+
+> **WAŻNE**: To jest plan dla prototypu UX/UI, nie funkcjonalnej aplikacji. Celem jest demonstracja umiejętności projektowych i technicznych.
 
 - [x] 1. Konfiguracja projektu i podstawowa struktura
   - Skonfigurowanie projektu React z TypeScript, Vite i Tailwind CSS
@@ -24,24 +26,24 @@
     - Implementacja formatowania czasu i statusu
     - _Wymagania: 1.4, 1.5_
 
-- [ ] 3. Implementacja strony Dashboard
-  - [ ] 3.1 Utworzenie layoutu strony Dashboard
-    - Dodanie nagłówka z tytułem i opisem
-    - Implementacja sekcji kart statystyk
-    - Dodanie komponentu ActivityFeed
-    - _Wymagania: 1.1, 1.2, 1.3, 1.4_
+- [ ] 3. UX/UI Enhancement - Dashboard Prototype
+  - [ ] 3.1 Polishing Dashboard Layout (UX Focus)
+    - Ulepszenie visual hierarchy i information architecture
+    - Dodanie przykładowych danych (mock data) dla demonstracji
+    - Poprawa responsywnego layoutu dla różnych screen sizes
+    - _Cel: Demonstracja dashboard design skills_
 
-  - [ ] 3.2 Integracja danych statystycznych
-    - Implementacja pobierania danych o aktywnych urządzeniach
-    - Implementacja pobierania danych o urządzeniach offline
-    - Implementacja pobierania danych o urządzeniach w stanie ostrzeżenia
-    - Implementacja pobierania danych o czasie działania sieci
-    - _Wymagania: 1.1, 1.2, 1.3_
+  - [ ] 3.2 Mock Data Integration (Prototype)
+    - Stworzenie realistic mock data dla statystyk
+    - Implementacja przykładowych danych dla różnych stanów (success, warning, error)
+    - Dodanie loading states i empty states
+    - _Cel: Pokazanie różnych UI states_
 
-  - [ ] 3.3 Integracja danych aktywności
-    - Implementacja pobierania danych o ostatnich zdarzeniach
-    - Implementacja aktualizacji feedu aktywności w czasie rzeczywistym
-    - _Wymagania: 1.4, 1.5_
+  - [ ] 3.3 Interactive Prototype Elements
+    - Dodanie hover effects i micro-interactions
+    - Implementacja smooth transitions między stanami
+    - Dodanie przykładowych tooltips i feedback
+    - _Cel: Demonstracja interaction design skills_
 
 - [ ] 4. Implementacja strony DeviceWizard
   - [ ] 4.1 Utworzenie komponentu kreatora konfiguracji
