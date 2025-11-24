@@ -14,23 +14,16 @@ import {
   User,
   Shield,
   RefreshCw,
-  Radio
+  Radio,
+  Database,
+  WifiOff
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { format, formatDistanceToNow } from "date-fns"
-
-export interface Activity {
-  id: string
-  event: string
-  device?: string
-  user?: string
-  timestamp: Date
-  status: "success" | "warning" | "info" | "error"
-  details?: string
-}
+import { mockActivityEvents, type ActivityEvent } from "@/data/mockData"
 
 interface ActivityFeedProps {
-  activities?: Activity[]
+  activities?: ActivityEvent[]
   title?: string
   description?: string
   maxItems?: number
@@ -41,83 +34,37 @@ interface ActivityFeedProps {
   emptyMessage?: string
 }
 
-// Sample activities data
-const defaultActivities: Activity[] = [
-  {
-    id: "1",
-    event: "Device Connected",
-    device: "AP-Floor2-Center",
-    timestamp: new Date(Date.now() - 10 * 60 * 1000), // 10 minutes ago
-    status: "success",
-    details: "Device successfully connected to the network"
-  },
-  {
-    id: "2", 
-    event: "High CPU Usage",
-    device: "AP-Floor1-East",
-    timestamp: new Date(Date.now() - 25 * 60 * 1000), // 25 minutes ago
-    status: "warning",
-    details: "CPU usage exceeded 80% threshold"
-  },
-  {
-    id: "3",
-    event: "Channel Changed",
-    device: "AP-Floor1-West", 
-    timestamp: new Date(Date.now() - 45 * 60 * 1000), // 45 minutes ago
-    status: "info",
-    details: "Channel automatically changed from 6 to 11"
-  },
-  {
-    id: "4",
-    event: "Device Offline",
-    device: "AP-Floor3-North",
-    timestamp: new Date(Date.now() - 60 * 60 * 1000), // 1 hour ago
-    status: "error",
-    details: "Device disconnected unexpectedly"
-  },
-  {
-    id: "5",
-    event: "Configuration Updated",
-    device: "AP-Floor2-West",
-    user: "admin",
-    timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
-    status: "success",
-    details: "Radio settings updated"
-  },
-  {
-    id: "6",
-    event: "Security Alert",
-    device: "AP-Floor1-South",
-    timestamp: new Date(Date.now() - 3 * 60 * 60 * 1000), // 3 hours ago
-    status: "error",
-    details: "Unauthorized access attempt detected"
-  }
-]
+// Use mock data as default
+const defaultActivities = mockActivityEvents;
 
 // Helper functions for status icons and event icons
 const getStatusIcon = (status: string) => {
   switch (status) {
     case "success":
-      return <CheckCircle className="w-4 h-4 text-[#52c41a]" />
+      return <CheckCircle className="w-4 h-4 text-success" />
     case "warning":
-      return <AlertTriangle className="w-4 h-4 text-[#faad14]" />
+      return <AlertTriangle className="w-4 h-4 text-warning" />
     case "info":
-      return <Info className="w-4 h-4 text-[#1890ff]" />
+      return <Info className="w-4 h-4 text-info" />
     case "error":
-      return <AlertCircle className="w-4 h-4 text-[#f5222d]" />
+      return <AlertCircle className="w-4 h-4 text-destructive" />
     default:
-      return <Clock className="w-4 h-4 text-[rgba(0,0,0,0.45)]" />
+      return <Clock className="w-4 h-4 text-muted-foreground" />
   }
 }
 
-const getEventIcon = (event: string) => {
-  if (event.toLowerCase().includes("connect")) return <Wifi className="w-4 h-4" />;
-  if (event.toLowerCase().includes("device")) return <Router className="w-4 h-4" />;
-  if (event.toLowerCase().includes("config")) return <Settings className="w-4 h-4" />;
-  if (event.toLowerCase().includes("user") || event.toLowerCase().includes("admin")) return <User className="w-4 h-4" />;
-  if (event.toLowerCase().includes("security") || event.toLowerCase().includes("auth")) return <Shield className="w-4 h-4" />;
-  if (event.toLowerCase().includes("update") || event.toLowerCase().includes("change")) return <RefreshCw className="w-4 h-4" />;
-  if (event.toLowerCase().includes("radio") || event.toLowerCase().includes("channel")) return <Radio className="w-4 h-4" />;
+const getEventIcon = (title: string, description: string) => {
+  const text = (title + " " + description).toLowerCase();
+  
+  if (text.includes("offline") || text.includes("disconnect")) return <WifiOff className="w-4 h-4" />;
+  if (text.includes("connect") || text.includes("online")) return <Wifi className="w-4 h-4" />;
+  if (text.includes("device") || text.includes("router") || text.includes("ap-")) return <Router className="w-4 h-4" />;
+  if (text.includes("config") || text.includes("setting")) return <Settings className="w-4 h-4" />;
+  if (text.includes("user") || text.includes("admin") || text.includes("login")) return <User className="w-4 h-4" />;
+  if (text.includes("security") || text.includes("auth") || text.includes("failed")) return <Shield className="w-4 h-4" />;
+  if (text.includes("update") || text.includes("firmware")) return <RefreshCw className="w-4 h-4" />;
+  if (text.includes("backup") || text.includes("maintenance")) return <Database className="w-4 h-4" />;
+  if (text.includes("radio") || text.includes("channel") || text.includes("signal")) return <Radio className="w-4 h-4" />;
   
   // Default icon based on status
   return null;
@@ -126,15 +73,15 @@ const getEventIcon = (event: string) => {
 const getStatusBadge = (status: string) => {
   switch (status) {
     case "success":
-      return <Badge variant="outline" className="text-[#52c41a] border-[#b7eb8f] bg-[#f6ffed]">Success</Badge>
+      return <Badge variant="outline" className="text-success border-success/30 bg-success/10 backdrop-blur-sm">Success</Badge>
     case "warning":
-      return <Badge variant="outline" className="text-[#faad14] border-[#ffe58f] bg-[#fffbe6]">Warning</Badge>
+      return <Badge variant="outline" className="text-warning border-warning/30 bg-warning/10 backdrop-blur-sm">Warning</Badge>
     case "info":
-      return <Badge variant="outline" className="text-[#1890ff] border-[#91d5ff] bg-[#e6f7ff]">Info</Badge>
+      return <Badge variant="outline" className="text-info border-info/30 bg-info/10 backdrop-blur-sm">Info</Badge>
     case "error":
-      return <Badge variant="outline" className="text-[#f5222d] border-[#ffccc7] bg-[#fff2f0]">Alert</Badge>
+      return <Badge variant="outline" className="text-destructive border-destructive/30 bg-destructive/10 backdrop-blur-sm">Alert</Badge>
     default:
-      return <Badge variant="outline" className="text-[rgba(0,0,0,0.65)] border-[#d9d9d9] bg-[#fafafa]">Unknown</Badge>
+      return <Badge variant="outline" className="text-muted-foreground border-muted/30 bg-muted/10 backdrop-blur-sm">Unknown</Badge>
   }
 }
 
@@ -179,7 +126,7 @@ export function ActivityFeed({
   const displayActivities = activities.slice(0, maxItems);
   
   return (
-    <Card className={cn("border shadow-sm", className)}>
+    <Card className={cn("glass-card", className)}>
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
           <div>
@@ -212,45 +159,54 @@ export function ActivityFeed({
             <div className="space-y-1">
               {displayActivities.map((activity, index) => (
                 <div key={activity.id}>
-                  <div className="flex items-start py-4">
+                  <div className="flex items-start py-4 px-2 -mx-2 rounded-lg hover:bg-muted/50 transition-all duration-200 group cursor-pointer">
                     <div className={cn(
-                      "flex h-8 w-8 shrink-0 items-center justify-center rounded-full",
-                      activity.status === "success" && "bg-[#f6ffed]",
-                      activity.status === "warning" && "bg-[#fffbe6]",
-                      activity.status === "info" && "bg-[#e6f7ff]",
-                      activity.status === "error" && "bg-[#fff2f0]"
+                      "flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 group-hover:shadow-md",
+                      activity.type === "success" && "bg-success/10 group-hover:bg-success/20",
+                      activity.type === "warning" && "bg-warning/10 group-hover:bg-warning/20",
+                      activity.type === "info" && "bg-info/10 group-hover:bg-info/20",
+                      activity.type === "error" && "bg-destructive/10 group-hover:bg-destructive/20"
                     )}>
-                      {getEventIcon(activity.event) || getStatusIcon(activity.status)}
+                      <div className="group-hover:scale-110 transition-transform duration-300">
+                        {getEventIcon(activity.title, activity.description) || getStatusIcon(activity.type)}
+                      </div>
                     </div>
                     <div className="ml-4 space-y-1 flex-1">
                       <div className="flex items-center justify-between">
-                        <p className="text-sm font-medium leading-none">
-                          {activity.event}
+                        <p className="text-sm font-medium leading-none group-hover:text-primary transition-colors duration-200">
+                          {activity.title}
                         </p>
-                        <div className="flex items-center">
-                          {getStatusBadge(activity.status)}
+                        <div className="flex items-center gap-2 opacity-80 group-hover:opacity-100 transition-opacity duration-200">
+                          {activity.severity === 'critical' && (
+                            <Badge variant="destructive" className="text-xs animate-pulse">
+                              Critical
+                            </Badge>
+                          )}
+                          <div className="group-hover:scale-105 transition-transform duration-200">
+                            {getStatusBadge(activity.type)}
+                          </div>
                         </div>
                       </div>
-                      <div className="flex items-center text-sm text-muted-foreground">
-                        {activity.device && (
-                          <span className="font-medium text-foreground">{activity.device}</span>
-                        )}
-                        {activity.user && (
-                          <span className="ml-1">
-                            {activity.device ? " by " : ""}
-                            <span className="font-medium text-foreground">{activity.user}</span>
+                      <p className="text-sm text-muted-foreground group-hover:text-foreground/80 transition-colors duration-200">
+                        {activity.description}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <p className="text-xs text-muted-foreground group-hover:text-muted-foreground/80 transition-colors duration-200">
+                          {formatTime(activity.timestamp)}
+                        </p>
+                        {activity.deviceId && (
+                          <span className="text-xs text-muted-foreground group-hover:text-primary/70 transition-colors duration-200 font-mono">
+                            {activity.deviceId}
                           </span>
                         )}
                       </div>
-                      {activity.details && (
-                        <p className="text-sm text-muted-foreground">{activity.details}</p>
-                      )}
-                      <p className="text-xs text-muted-foreground">
-                        {formatTime(activity.timestamp)}
-                      </p>
                     </div>
+                    {/* Hover indicator */}
+                    <div className="w-1 h-8 bg-primary/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 ml-2" />
                   </div>
-                  {index < displayActivities.length - 1 && <Separator />}
+                  {index < displayActivities.length - 1 && (
+                    <Separator className="opacity-50 group-hover:opacity-100 transition-opacity duration-200" />
+                  )}
                 </div>
               ))}
             </div>

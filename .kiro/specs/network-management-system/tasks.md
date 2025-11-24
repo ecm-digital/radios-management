@@ -27,26 +27,26 @@
     - _Wymagania: 1.4, 1.5_
 
 - [ ] 3. UX/UI Enhancement - Dashboard Prototype
-  - [ ] 3.1 Polishing Dashboard Layout (UX Focus)
+  - [x] 3.1 Polishing Dashboard Layout (UX Focus)
     - Ulepszenie visual hierarchy i information architecture
     - Dodanie przykładowych danych (mock data) dla demonstracji
     - Poprawa responsywnego layoutu dla różnych screen sizes
     - _Cel: Demonstracja dashboard design skills_
 
-  - [ ] 3.2 Mock Data Integration (Prototype)
+  - [x] 3.2 Mock Data Integration (Prototype)
     - Stworzenie realistic mock data dla statystyk
     - Implementacja przykładowych danych dla różnych stanów (success, warning, error)
     - Dodanie loading states i empty states
     - _Cel: Pokazanie różnych UI states_
 
-  - [ ] 3.3 Interactive Prototype Elements
+  - [x] 3.3 Interactive Prototype Elements
     - Dodanie hover effects i micro-interactions
     - Implementacja smooth transitions między stanami
     - Dodanie przykładowych tooltips i feedback
     - _Cel: Demonstracja interaction design skills_
 
 - [ ] 4. Implementacja strony DeviceWizard
-  - [ ] 4.1 Utworzenie komponentu kreatora konfiguracji
+  - [x] 4.1 Utworzenie komponentu kreatora konfiguracji
     - Implementacja kroków kreatora (wybór urządzeń, podstawowa konfiguracja, konfiguracja radiowa, potwierdzenie)
     - Dodanie wskaźnika postępu
     - Implementacja nawigacji między krokami

@@ -83,17 +83,17 @@ export function StatsCard({
   const getCardClass = () => {
     switch (variant) {
       case "destructive":
-        return "border-[#ffccc7] bg-[#fff2f0]"
+        return "border-destructive/30 bg-destructive/10 backdrop-blur-md"
       case "warning":
-        return "border-[#ffe58f] bg-[#fffbe6]"
+        return "border-warning/30 bg-warning/10 backdrop-blur-md"
       case "success":
-        return "border-[#b7eb8f] bg-[#f6ffed]"
+        return "border-success/30 bg-success/10 backdrop-blur-md"
       case "secondary":
-        return "border-[#d9d9d9] bg-[#fafafa]"
+        return "border-secondary/30 bg-secondary/40 backdrop-blur-md"
       case "outline":
-        return "border-[#f0f0f0] bg-white"
+        return "border-white/20 bg-white/20 backdrop-blur-xl shadow-sm"
       default:
-        return "border-[#f0f0f0] bg-white"
+        return "glass-card border-white/20"
     }
   }
 
@@ -112,49 +112,62 @@ export function StatsCard({
   return (
     <Card 
       className={cn(
-        "relative overflow-hidden transition-all duration-300 hover:shadow-md", 
+        "relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:scale-[1.02] cursor-pointer group border-2 hover:border-primary/20", 
         getCardClass(),
         className
       )}
     >
-      <CardHeader className="pb-2">
+      {/* Animated background gradient on hover */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      
+      <CardHeader className="pb-2 relative z-10">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-sm font-medium text-muted-foreground">
+          <CardTitle className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-300">
             {title}
           </CardTitle>
-          <div className={cn("p-2 rounded-lg", getIconBgColor())}>
-            <Icon className={cn("w-5 h-5", getIconColor())} />
+          <div className={cn(
+            "p-2 rounded-lg transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-md", 
+            getIconBgColor()
+          )}>
+            <Icon className={cn("w-5 h-5 transition-all duration-300 group-hover:scale-110", getIconColor())} />
           </div>
         </div>
         {description && (
-          <CardDescription className="text-xs mt-1">
+          <CardDescription className="text-xs mt-1 group-hover:text-muted-foreground/80 transition-colors duration-300">
             {description}
           </CardDescription>
         )}
       </CardHeader>
-      <CardContent>
+      <CardContent className="relative z-10">
         {loading ? (
           <div className="h-9 w-24 bg-muted animate-pulse rounded" />
         ) : (
-          <div className="text-2xl md:text-3xl font-bold text-foreground">
+          <div className="text-2xl md:text-3xl font-bold text-foreground group-hover:scale-105 transition-transform duration-300">
             {value}
           </div>
         )}
       </CardContent>
       {change && (
-        <CardFooter className="pt-0">
-          <div className="flex items-center gap-1 text-sm">
-            <ChangeIcon />
+        <CardFooter className="pt-0 relative z-10">
+          <div className="flex items-center gap-1 text-sm group-hover:scale-105 transition-transform duration-300">
+            <div className="group-hover:animate-bounce">
+              <ChangeIcon />
+            </div>
             <span className={cn("font-medium", getChangeColor())}>
               {change}
             </span>
             {timeFrame && (
-              <span className="text-xs text-muted-foreground ml-1">
+              <span className="text-xs text-muted-foreground ml-1 group-hover:text-muted-foreground/70 transition-colors duration-300">
                 {timeFrame}
               </span>
             )}
           </div>
         </CardFooter>
+      )}
+      
+      {/* Subtle pulse animation for critical states */}
+      {variant === "destructive" && (
+        <div className="absolute inset-0 bg-destructive/5 animate-pulse opacity-50" />
       )}
     </Card>
   )

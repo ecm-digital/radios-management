@@ -92,7 +92,7 @@ export default function NetworkMap() {
             Dynamic, physics-based visualization of your network devices.
           </p>
         </div>
-        <div ref={visJsRef} className="border rounded-lg bg-card h-[600px]" />
+        <div ref={visJsRef} className="glass-card h-[600px] overflow-hidden" />
       </div>
     </>
   );

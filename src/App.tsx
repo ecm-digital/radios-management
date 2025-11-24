@@ -1,5 +1,6 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
+import { ToastContainer } from "@/components/ui/toast-container";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -23,19 +24,22 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <ToastContainer />
         <BrowserRouter>
           <SidebarProvider>
-          <div className="min-h-screen flex w-full bg-background">
+          <div className="min-h-screen flex w-full bg-transparent">
             <AppSidebar />
             <div className="flex-1 flex flex-col">
-              <header className="h-14 flex items-center border-b bg-card px-6">
+              <header className="h-14 flex items-center border-b border-white/20 glass px-6 sticky top-0 z-50">
                 <SidebarTrigger className="mr-4" />
                 <div className="flex items-center gap-4">
                   <h2 className="font-semibold text-foreground">Radiance Network Management</h2>
                 </div>
               </header>
-              <main className="flex-1 p-6">
-                <Routes>
+              <main className="flex-1 p-6 relative">
+                <div className="absolute inset-0 bg-white/5 pointer-events-none" />
+                <div className="relative z-10">
+                  <Routes>
                   <Route path="/" element={<Dashboard />} />
                   <Route path="/devices" element={<DeviceWizard />} />
                   <Route path="/network-map" element={<NetworkMap />} />
@@ -44,7 +48,8 @@ const App = () => (
                   <Route path="/user-management" element={<UserManagement />} />
                   <Route path="/system-settings" element={<SystemSettings />} />
                   <Route path="*" element={<NotFound />} />
-                </Routes>
+                  </Routes>
+                </div>
               </main>
             </div>
           </div>
