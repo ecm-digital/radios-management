@@ -209,10 +209,9 @@ export default function Dashboard() {
         </div>
 
         {/* Primary Stats Cards - Enhanced Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 gap-6">
           {statsLoading ? (
             <>
-              <StatsCardSkeleton />
               <StatsCardSkeleton />
               <StatsCardSkeleton />
               <StatsCardSkeleton />
@@ -233,17 +232,15 @@ export default function Dashboard() {
               </Card>
             </div>
           ) : (
-            <>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="animate-in fade-in-0 duration-500 delay-100">
                 <StatsCard
                   title="Active Devices"
                   value={networkStats.activeDevices.toString()}
-                  change={networkStats.activeDevices > networkStats.totalDevices * 0.9 ? "+2.1%" : "+3.3%"}
+                  change="+40%"
                   changeType="positive"
-                  timeFrame="from last 24 hours"
-                  icon={Router}
-                  variant="success"
-                  description={`${networkStats.totalDevices} total devices`}
+                  timeFrame="Than last month"
+                  className="bg-white/5 border-0 shadow-xl backdrop-blur-3xl"
                 />
               </div>
               
@@ -251,41 +248,24 @@ export default function Dashboard() {
                 <StatsCard
                   title="Offline Devices"
                   value={networkStats.offlineDevices.toString()}
-                  change={networkStats.offlineDevices > 0 ? "+1" : "0"}
-                  changeType={networkStats.offlineDevices > 0 ? "negative" : "positive"}
-                  timeFrame="from last hour"
-                  icon={WifiOff}
-                  variant={networkStats.offlineDevices > 0 ? "destructive" : "success"}
-                  description={networkStats.offlineDevices > 0 ? "Requires attention" : "All devices online"}
+                  change="+5%"
+                  changeType="positive"
+                  timeFrame="Than last month"
+                  className="bg-white/5 border-0 shadow-xl backdrop-blur-3xl"
                 />
               </div>
               
               <div className="animate-in fade-in-0 duration-500 delay-300">
                 <StatsCard
-                  title="Warning Status"
-                  value={networkStats.warningDevices.toString()}
-                  change={networkStats.warningDevices > 2 ? "+1" : "-2"}
-                  changeType={networkStats.warningDevices > 2 ? "negative" : "positive"}
-                  timeFrame="from yesterday"
-                  icon={AlertTriangle}
-                  variant={networkStats.warningDevices > 2 ? "warning" : "success"}
-                  description={networkStats.warningDevices > 0 ? "Performance issues" : "All systems normal"}
+                  title="Total Savings"
+                  value="$8,000.00"
+                  change="+30%"
+                  changeType="positive"
+                  timeFrame="Than last month"
+                  className="bg-gradient-to-br from-[#7c3aed]/20 to-[#2563eb]/20 border-0 shadow-xl backdrop-blur-3xl"
                 />
               </div>
-              
-              <div className="animate-in fade-in-0 duration-500 delay-400">
-                <StatsCard
-                  title="Network Uptime"
-                  value={`${networkStats.networkUptime}%`}
-                  change={networkStats.networkUptime > 99 ? "+0.2%" : "-0.1%"}
-                  changeType={networkStats.networkUptime > 99 ? "positive" : "negative"}
-                  timeFrame="last 30 days"
-                  icon={Activity}
-                  variant={networkStats.networkUptime > 99 ? "success" : "warning"}
-                  description={networkStats.networkUptime > 99 ? "Excellent performance" : "Below target"}
-                />
-              </div>
-            </>
+            </div>
           )}
         </div>
 
