@@ -9,11 +9,11 @@ const alertBadgeVariants = cva(
     variants: {
       variant: {
         default: "bg-primary/10 text-primary border border-primary/20",
-        success: "bg-[#f6ffed] text-[#52c41a] border border-[#b7eb8f]",
-        warning: "bg-[#fffbe6] text-[#faad14] border border-[#ffe58f]",
-        info: "bg-[#e6f7ff] text-[#1890ff] border border-[#91d5ff]",
-        error: "bg-[#fff2f0] text-[#f5222d] border border-[#ffccc7]",
-        processing: "bg-[#e6f7ff] text-[#1890ff] border border-[#91d5ff]",
+        success: "bg-green-500/10 text-green-400 border border-green-500/20",
+        warning: "bg-amber-500/10 text-amber-400 border border-amber-500/20",
+        info: "bg-blue-500/10 text-blue-400 border border-blue-500/20",
+        error: "bg-red-500/10 text-red-400 border border-red-500/20",
+        processing: "bg-blue-500/10 text-blue-400 border border-blue-500/20",
       },
     },
     defaultVariants: {
