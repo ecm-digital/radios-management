@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Plus, X, Router, AlertTriangle, BarChart3, Settings } from "lucide-react"
@@ -16,38 +17,41 @@ interface FloatingActionButtonProps {
   className?: string
 }
 
-const defaultActions: FloatingAction[] = [
-  {
-    icon: Router,
-    label: "Add Device",
-    onClick: () => window.location.href = "/devices",
-    color: "bg-blue-500 hover:bg-blue-600"
-  },
-  {
-    icon: AlertTriangle,
-    label: "View Alerts",
-    onClick: () => window.location.href = "/alerts",
-    color: "bg-red-500 hover:bg-red-600"
-  },
-  {
-    icon: BarChart3,
-    label: "Analytics",
-    onClick: () => window.location.href = "/analytics",
-    color: "bg-green-500 hover:bg-green-600"
-  },
-  {
-    icon: Settings,
-    label: "Settings",
-    onClick: () => window.location.href = "/system-settings",
-    color: "bg-gray-500 hover:bg-gray-600"
-  }
-]
-
 export function FloatingActionButton({ 
-  actions = defaultActions, 
+  actions,
   className 
 }: FloatingActionButtonProps) {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false)
+
+  const defaultActions: FloatingAction[] = [
+    {
+      icon: Router,
+      label: "Add Device",
+      onClick: () => navigate("/devices"),
+      color: "bg-blue-500 hover:bg-blue-600"
+    },
+    {
+      icon: AlertTriangle,
+      label: "View Alerts",
+      onClick: () => navigate("/alerts"),
+      color: "bg-red-500 hover:bg-red-600"
+    },
+    {
+      icon: BarChart3,
+      label: "Analytics",
+      onClick: () => navigate("/analytics"),
+      color: "bg-green-500 hover:bg-green-600"
+    },
+    {
+      icon: Settings,
+      label: "Settings",
+      onClick: () => navigate("/system-settings"),
+      color: "bg-gray-500 hover:bg-gray-600"
+    }
+  ]
+
+  const finalActions = actions || defaultActions;
 
   return (
     <TooltipProvider>
@@ -57,7 +61,7 @@ export function FloatingActionButton({
           "flex flex-col-reverse gap-3 mb-3 transition-all duration-300",
           isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
         )}>
-          {actions.map((action, index) => (
+          {finalActions.map((action, index) => (
             <Tooltip key={index}>
               <TooltipTrigger asChild>
                 <Button

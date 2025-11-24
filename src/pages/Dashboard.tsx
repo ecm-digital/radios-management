@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { useNavigate } from 'react-router-dom';
 import { StatsCard } from "@/components/StatsCard"
 import { ActivityFeed } from "@/components/ActivityFeed"
 import { StatsCardSkeleton, ActivityFeedSkeleton } from "@/components/ui/skeleton"
@@ -70,6 +71,7 @@ const formatTimeAgo = (date: Date): string => {
 };
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true)
   const [statsLoading, setStatsLoading] = useState(true)
   const [activityLoading, setActivityLoading] = useState(true)
@@ -345,7 +347,7 @@ export default function Dashboard() {
                 description="Latest network events and system changes"
                 maxItems={6}
                 showViewAll={true}
-                onViewAllClick={() => window.location.href = '/alerts'}
+                onViewAllClick={() => navigate('/alerts')}
                 emptyMessage="No recent activity to display"
               />
             )}
@@ -367,7 +369,7 @@ export default function Dashboard() {
                     key={index}
                     variant="ghost"
                     className="w-full justify-start h-auto p-3 hover:bg-[#f5f5f5] transition-colors duration-200 group"
-                    onClick={() => window.location.href = action.action}
+                    onClick={() => navigate(action.action)}
                   >
                     <action.icon className="w-4 h-4 mr-3 group-hover:scale-110 transition-transform duration-200" />
                     <span className="flex-1 text-left">{action.label}</span>
@@ -481,7 +483,7 @@ export default function Dashboard() {
                       variant="ghost" 
                       size="sm" 
                       className="w-full mt-2 text-[#1890ff] hover:text-[#40a9ff] hover:bg-[#f0f9ff]"
-                      onClick={() => window.location.href = '/alerts'}
+                      onClick={() => navigate('/alerts')}
                     >
                       View all alerts ({activeAlerts.length})
                       <ChevronRight className="w-4 h-4 ml-1" />
